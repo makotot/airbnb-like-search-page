@@ -7,8 +7,10 @@ import { PeopleField } from "./PeopleField";
 import { SimpleHeader } from "./SimpleHeader";
 import { usePresenter } from "./usePresenter";
 
-export const SearchForm: React.FC = () => {
-  const { handleSubmit, destination, dateRange, people } = usePresenter();
+export const SearchForm: React.FC<{
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}> = ({ handleSubmit }) => {
+  const { destination, dateRange, people } = usePresenter();
 
   return (
     <form onSubmit={handleSubmit}>
