@@ -2,13 +2,14 @@ import React from "react";
 import { Box, Grid, Text, CloseButton, Button } from "@chakra-ui/react";
 import { Header } from "../Header";
 import { usePresenter } from "./usePresenter";
-import { BiSearch } from "react-icons/bi";
+import { BiCalendar, BiSearch } from "react-icons/bi";
 
 export const FormHeader: React.FC = () => {
   const {
     isFormVisible,
     handleHideSearchForm,
     handleShowDestinationField,
+    handleShowDateRangePicker,
   } = usePresenter();
 
   return (
@@ -31,6 +32,15 @@ export const FormHeader: React.FC = () => {
             >
               行き先
             </Button>
+            <Grid marginTop={1} gap={1} gridTemplateColumns="1fr 1fr">
+              <Button
+                width="100%"
+                leftIcon={<BiCalendar />}
+                onClick={handleShowDateRangePicker}
+              >
+                日付
+              </Button>
+            </Grid>
           </Box>
         </Box>
       </Header>

@@ -1,4 +1,5 @@
 import React from "react";
+import { DateRangePicker } from "./DateRangePicker";
 import { DestinationField } from "./DestinationField";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormHeader } from "./FormHeader";
@@ -6,7 +7,7 @@ import { SimpleHeader } from "./SimpleHeader";
 import { usePresenter } from "./usePresenter";
 
 export const SearchForm: React.FC = () => {
-  const { handleSubmit, destination } = usePresenter();
+  const { handleSubmit, destination, dateRange } = usePresenter();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -15,6 +16,9 @@ export const SearchForm: React.FC = () => {
 
       <FieldWrapper isVisible={destination.isFieldVisible}>
         <DestinationField />
+      </FieldWrapper>
+      <FieldWrapper isVisible={dateRange.isFieldVisible}>
+        <DateRangePicker />
       </FieldWrapper>
     </form>
   );

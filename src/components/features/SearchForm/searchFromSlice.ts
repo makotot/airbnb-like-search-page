@@ -6,7 +6,7 @@ const initialState = {
     isFieldVisible: false,
     value: "",
   },
-  date: {
+  dateRange: {
     isFieldVisible: false,
     value: {
       start: "",
@@ -29,6 +29,7 @@ export const searchFormSlice = createSlice({
     hideForm(state) {
       state.isFormVisible = false;
       state.destination.isFieldVisible = false;
+      state.dateRange.isFieldVisible = false;
     },
     showDestinationField(state) {
       state.destination.isFieldVisible = true;
@@ -39,6 +40,19 @@ export const searchFormSlice = createSlice({
     },
     setDestination(state, action: PayloadAction<{ value: string }>) {
       state.destination.value = action.payload.value;
+    },
+    showDateRangePicker(state) {
+      state.dateRange.isFieldVisible = true;
+      state.dateRange.value = {
+        start: undefined,
+        end: undefined,
+      };
+    },
+    hideDateRangePicker(state) {
+      state.dateRange = initialState.dateRange;
+    },
+    setDateRange(state, action: PayloadAction<{ start: string; end: string }>) {
+      state.dateRange.value = action.payload;
     },
   },
 });
