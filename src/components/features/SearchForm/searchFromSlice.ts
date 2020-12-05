@@ -22,5 +22,12 @@ const initialState = {
 export const searchFormSlice = createSlice({
   name: "searchForm",
   initialState,
-  reducers: {},
+  reducers: {
+    showForm(state) {
+      state.isFormVisible = true;
+    },
+    hideForm(state) {
+      state.isFormVisible = false;
+    },
+  },
 });
