@@ -30,6 +30,7 @@ export const searchFormSlice = createSlice({
       state.isFormVisible = false;
       state.destination.isFieldVisible = false;
       state.dateRange.isFieldVisible = false;
+      state.people.isFieldVisible = false;
     },
     showDestinationField(state) {
       state.destination.isFieldVisible = true;
@@ -53,6 +54,16 @@ export const searchFormSlice = createSlice({
     },
     setDateRange(state, action: PayloadAction<{ start: string; end: string }>) {
       state.dateRange.value = action.payload;
+    },
+    hidePeopleField(state) {
+      state.people = initialState.people;
+    },
+    showPeopleField(state) {
+      state.people.isFieldVisible = true;
+      state.people.value = 0;
+    },
+    changePeopleValue(state, action: PayloadAction<{ value: number }>) {
+      state.people.value = action.payload.value;
     },
   },
 });

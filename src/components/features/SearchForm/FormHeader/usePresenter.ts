@@ -13,12 +13,16 @@ export const usePresenter = () => {
   const handleShowDateRangePicker = () => {
     dispatch(searchFormSlice.actions.showDateRangePicker());
   };
+  const handleShowPeopleField = () => {
+    dispatch(searchFormSlice.actions.showPeopleField());
+  };
   const { isFormVisible } = useSelector((state: RootState) => state.searchForm);
 
   return {
     handleHideSearchForm,
     handleShowDestinationField,
     handleShowDateRangePicker,
+    handleShowPeopleField,
     isFormVisible,
   };
 };

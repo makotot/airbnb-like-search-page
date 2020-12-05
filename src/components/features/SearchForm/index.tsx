@@ -3,11 +3,12 @@ import { DateRangePicker } from "./DateRangePicker";
 import { DestinationField } from "./DestinationField";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormHeader } from "./FormHeader";
+import { PeopleField } from "./PeopleField";
 import { SimpleHeader } from "./SimpleHeader";
 import { usePresenter } from "./usePresenter";
 
 export const SearchForm: React.FC = () => {
-  const { handleSubmit, destination, dateRange } = usePresenter();
+  const { handleSubmit, destination, dateRange, people } = usePresenter();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -19,6 +20,9 @@ export const SearchForm: React.FC = () => {
       </FieldWrapper>
       <FieldWrapper isVisible={dateRange.isFieldVisible}>
         <DateRangePicker />
+      </FieldWrapper>
+      <FieldWrapper isVisible={people.isFieldVisible}>
+        <PeopleField />
       </FieldWrapper>
     </form>
   );
