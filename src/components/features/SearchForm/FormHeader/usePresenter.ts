@@ -7,10 +7,14 @@ export const usePresenter = () => {
   const handleHideSearchForm = () => {
     dispatch(searchFormSlice.actions.hideForm());
   };
+  const handleShowDestinationField = () => {
+    dispatch(searchFormSlice.actions.showDestinationField());
+  };
   const { isFormVisible } = useSelector((state: RootState) => state.searchForm);
 
   return {
     handleHideSearchForm,
+    handleShowDestinationField,
     isFormVisible,
   };
 };

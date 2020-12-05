@@ -1,10 +1,15 @@
 import React from "react";
-import { Box, Grid, Text, CloseButton } from "@chakra-ui/react";
+import { Box, Grid, Text, CloseButton, Button } from "@chakra-ui/react";
 import { Header } from "../Header";
 import { usePresenter } from "./usePresenter";
+import { BiSearch } from "react-icons/bi";
 
 export const FormHeader: React.FC = () => {
-  const { isFormVisible, handleHideSearchForm } = usePresenter();
+  const {
+    isFormVisible,
+    handleHideSearchForm,
+    handleShowDestinationField,
+  } = usePresenter();
 
   return (
     <Box display={isFormVisible ? "block" : "none"}>
@@ -18,7 +23,15 @@ export const FormHeader: React.FC = () => {
               </Box>
             </Grid>
           </Box>
-          <Box marginTop={2}>fields</Box>
+          <Box marginTop={2}>
+            <Button
+              width="100%"
+              leftIcon={<BiSearch />}
+              onClick={handleShowDestinationField}
+            >
+              行き先
+            </Button>
+          </Box>
         </Box>
       </Header>
     </Box>

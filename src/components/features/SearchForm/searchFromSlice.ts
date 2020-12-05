@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   isFormVisible: false,
@@ -28,6 +28,17 @@ export const searchFormSlice = createSlice({
     },
     hideForm(state) {
       state.isFormVisible = false;
+      state.destination.isFieldVisible = false;
+    },
+    showDestinationField(state) {
+      state.destination.isFieldVisible = true;
+      state.destination.value = "";
+    },
+    hideDestinationField(state) {
+      state.destination = initialState.destination;
+    },
+    setDestination(state, action: PayloadAction<{ value: string }>) {
+      state.destination.value = action.payload.value;
     },
   },
 });
