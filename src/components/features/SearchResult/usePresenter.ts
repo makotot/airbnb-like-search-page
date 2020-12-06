@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
-import { searchRooms } from "./searchResultSlice";
+import { searchRooms, selectAll } from "./searchResultSlice";
 import { RootState } from "../../../state/store";
 
 export const usePresenter = ({ queryParameter }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state: RootState) => state.searchResult);
+  const searchResultRooms = useSelector(selectAll);
+  const { loading, total } = useSelector(
+    (state: RootState) => state.searchResult
+  );
   const toast = useToast();
 
   useEffect(() => {
@@ -29,5 +32,7 @@ export const usePresenter = ({ queryParameter }) => {
 
   return {
     loading,
+    searchResultRooms,
+    total,
   };
 };

@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
+import { useSelector } from "react-redux";
 import { RESULT_LIMIT } from "../../../../config";
+import { RootState } from "../../../../state/store";
 import { filterFalsyFromObject } from "../../../../utils";
+import { selectTotal } from "../searchResultSlice";
 
 const MAX_PAGE_ITEMS_DISPLAY_SIZE = 5;
 
@@ -109,15 +112,13 @@ export const usePagination = ({
   };
 };
 
-export const usePresenter = ({
-  totalPage,
-  currentPage,
-}: {
-  totalPage: number;
-  currentPage: number;
-}) => {
-  const pagination = usePagination({ totalPage, currentPage });
+export const usePresenter = () => {
   const router = useRouter();
+  const { total } = useSelector((state: RootState) => state.searchResult);
+  const currentPageTotalRoom = useSelector(selectTotal);
+  const totalPage = Math.ceil(Number(total) / RESULT_LIMIT) || 1;
+  const currentPage = router.query.page ? Number(router.query.page) : 1;
+  const pagination = usePagination({ totalPage, currentPage });
 
   const handleChangePage = (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
@@ -141,5 +142,8 @@ export const usePresenter = ({
   return {
     pagination,
     handleChangePage,
+    currentPageTotalRoom,
+    total,
+    currentPage,
   };
 };

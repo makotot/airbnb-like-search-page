@@ -3,12 +3,7 @@ import React from "react";
 import { usePresenter } from "./usePresenter";
 
 export const Pagination: React.FC = () => {
-  const currentPage = 1;
-  const totalPage = 10;
-  const { pagination, handleChangePage } = usePresenter({
-    currentPage,
-    totalPage,
-  });
+  const { pagination, handleChangePage, currentPage } = usePresenter();
 
   return (
     <Box width="800px" margin="0 auto" paddingY={4}>

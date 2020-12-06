@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Spinner, Stack } from "@chakra-ui/react";
+import { Alert, Box, Grid, Spinner, Stack } from "@chakra-ui/react";
 import { usePresenter } from "./usePresenter";
 import { Card } from "./Card";
 import { Pagination } from "./Pagination";
@@ -7,7 +7,9 @@ import { Pagination } from "./Pagination";
 export const SearchResult: React.FC<{
   queryParameter: string;
 }> = ({ queryParameter }) => {
-  const { loading } = usePresenter({ queryParameter });
+  const { loading, searchResultRooms, total } = usePresenter({
+    queryParameter,
+  });
 
   return (
     <>
@@ -23,16 +25,28 @@ export const SearchResult: React.FC<{
         </Grid>
       ) : (
         <Box width="800px" margin="0 auto" paddingTop={8}>
-          <Stack spacing={8} shouldWrapChildren>
-            {Array(20)
-              .fill(true)
-              .map((room, index) => (
-                <Card key={index} />
-              ))}
-          </Stack>
+          {searchResultRooms.length > 0 && loading === "end" && (
+            <>
+              <Box paddingY={4} fontWeight="bold">
+                {total}件見つかりました。
+              </Box>
+              <Stack spacing={8} shouldWrapChildren>
+                {searchResultRooms.map((room) => (
+                  <Card key={room.id} room={room} />
+                ))}
+              </Stack>
+            </>
+          )}
+          {searchResultRooms.length === 0 && loading === "end" && (
+            <Alert status="warning">
+              <Box p={4}>
+                検索結果は0件です。検索条件を変更して再検索してみてください。
+              </Box>
+            </Alert>
+          )}
         </Box>
       )}
-      <Pagination />
+      {searchResultRooms.length > 0 && <Pagination />}
     </>
   );
 };
