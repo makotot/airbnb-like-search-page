@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Grid, Spinner } from "@chakra-ui/react";
+import { Box, Grid, Spinner, Stack } from "@chakra-ui/react";
 import { usePresenter } from "./usePresenter";
+import { Card } from "./Card";
 
 export const SearchResult: React.FC<{
   queryParameter: string;
@@ -21,7 +22,13 @@ export const SearchResult: React.FC<{
         </Grid>
       ) : (
         <Box width="800px" margin="0 auto" paddingTop={8}>
-          result
+          <Stack spacing={8} shouldWrapChildren>
+            {Array(20)
+              .fill(true)
+              .map((room, index) => (
+                <Card key={index} />
+              ))}
+          </Stack>
         </Box>
       )}
     </>

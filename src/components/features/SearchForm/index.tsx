@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import { DateRangePicker } from "./DateRangePicker";
 import { DestinationField } from "./DestinationField";
@@ -13,19 +14,21 @@ export const SearchForm: React.FC<{
   const { destination, dateRange, people } = usePresenter();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <SimpleHeader />
-      <FormHeader />
+    <Box height="80px">
+      <form onSubmit={handleSubmit}>
+        <SimpleHeader />
+        <FormHeader />
 
-      <FieldWrapper isVisible={destination.isFieldVisible}>
-        <DestinationField />
-      </FieldWrapper>
-      <FieldWrapper isVisible={dateRange.isFieldVisible}>
-        <DateRangePicker />
-      </FieldWrapper>
-      <FieldWrapper isVisible={people.isFieldVisible}>
-        <PeopleField />
-      </FieldWrapper>
-    </form>
+        <FieldWrapper isVisible={destination.isFieldVisible}>
+          <DestinationField />
+        </FieldWrapper>
+        <FieldWrapper isVisible={dateRange.isFieldVisible}>
+          <DateRangePicker />
+        </FieldWrapper>
+        <FieldWrapper isVisible={people.isFieldVisible}>
+          <PeopleField />
+        </FieldWrapper>
+      </form>
+    </Box>
   );
 };
