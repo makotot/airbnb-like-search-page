@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
-import { filterFalsyFromObject } from "./utils";
+import { filterFalsyFromObject } from "../../../utils";
 import { RESULT_LIMIT } from "../../../config";
 import { searchFormSlice } from "../../features/SearchForm/searchFromSlice";
 

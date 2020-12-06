@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Grid, Spinner, Stack } from "@chakra-ui/react";
 import { usePresenter } from "./usePresenter";
 import { Card } from "./Card";
+import { Pagination } from "./Pagination";
 
 export const SearchResult: React.FC<{
   queryParameter: string;
@@ -31,6 +32,7 @@ export const SearchResult: React.FC<{
           </Stack>
         </Box>
       )}
+      <Pagination />
     </>
   );
 };
